@@ -128,8 +128,9 @@ rpivotTable <- function(
     )
 
  #   auto_box vectors of length 1
+    # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
     params <- Map( function(p){
-        if(length(p) == 1 ){
+        if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
           p = list(p)
         }
         return(p)
