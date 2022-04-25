@@ -144,8 +144,8 @@ rpivotTable <- function(
 
  #   auto_box vectors of length 1
     # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
-    params <- Map( function(p){
-      if(typeof(p) != "list"){
+    params <- Map( function(p){ 
+      if(typeof(p) != "list"){  # don't nest a nest!
         if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
           message(typeof(p))
           p = list(p)
@@ -155,7 +155,7 @@ rpivotTable <- function(
     }
       , params
     )
-    # exlusions & inclusions need to be "excluded" from auto_boxing
+    # exclusions & inclusions need to be "excluded" from auto_boxing
     par <- list(
            exclusions = exclusions,
            inclusions = inclusions
