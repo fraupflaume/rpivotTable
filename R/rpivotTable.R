@@ -75,15 +75,15 @@
 #' # An example with inclusions and exclusions filters:
 #'
 #' rpivotTable(
-#' Titanic,
-#' rows = "Survived",
-#' cols = c("Class","Sex"),
-#' aggregatorName = "Sum as Fraction of Columns",
-#' inclusions = list( Survived = list("Yes")),
-#' exclusions= list( Class = list( "Crew")),
-#' vals = "Freq",
-#' rendererName = "Table Barchart"
-#' )
+#'   Titanic,
+#'   rows = "Survived",
+#'   cols = c("Class","Sex"),
+#'   aggregatorName = "Sum as Fraction of Columns",
+#'   inclusions = list( Survived = list("Yes")),
+#'   exclusions= list( Class = list( "Crew")),
+#'   vals = "Freq",
+#'   rendererName = "Table Barchart"
+#')
 #'
 #' # An example with C3 chart options to hide the legend
 #' # adapted from example by @dtownley 
@@ -92,14 +92,14 @@
 #' df1 <- data.frame(where = LETTERS[1:3], what = c(3.6, 5.6, 1.1))
 #'
 #' rpivotTable(
-#' df1,
-#' aggregatorName = "Sum",
-#' vals = "Count",
-#' cols = "where",
-#' rows = "what",
-#' menulimit = 1200,
-#' rendererName = "Line Chart",
-#' rendererOptions = list(c3 = list(legend = list(show = FALSE))))
+#'   df1,
+#'   aggregatorName = "Sum",
+#'   vals = "Count",
+#'   cols = "where",
+#'   rows = "what",
+#'   menulimit = 1200,
+#'   rendererName = "Line Chart",
+#'   rendererOptions = list(c3 = list(legend = list(show = FALSE))))
 #'
 #'
 #'
