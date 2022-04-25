@@ -146,7 +146,8 @@ rpivotTable <- function(
     # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
     params <- Map( function(p){
         if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
-          p = list(p)
+          p = unlist(list(p), recursive = F) 
+                    # added this 1 level unlist to combat inappropriate nesting issues
         }
         return(p)
       }
