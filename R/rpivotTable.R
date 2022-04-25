@@ -145,12 +145,14 @@ rpivotTable <- function(
  #   auto_box vectors of length 1
     # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
     params <- Map( function(p){
+      if(typeof(p) != "list"){
         if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
-          p = unlist(list(p), recursive = F) 
-                    # added this 1 level unlist to combat inappropriate nesting issues
-        }
-        return(p)
+          message(typeof(p))
+          p = list(p)
+          }
       }
+      return(p)
+    }
       , params
     )
     # exlusions & inclusions need to be "excluded" from auto_boxing
