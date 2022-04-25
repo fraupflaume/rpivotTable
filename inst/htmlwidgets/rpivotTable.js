@@ -14,10 +14,11 @@ HTMLWidgets.widget({
             x.params.sorters = eval("("+x.params.sorters[0]+")")
           }
       }
-      // I believe this is why it works when chunks execute but it's wrong in HTML
-      //if (typeof x.params.onRefresh != "undefined") {
-      //  x.params.onRefresh = x.params.onRefresh[0];
-      //}
+      // I thought this was why it didn't work in HTML with RMD, but did within chunk exec
+      // however commenting out this code caused neither to work
+      if (typeof x.params.onRefresh != "undefined") {
+        x.params.onRefresh = x.params.onRefresh[0];
+      }
 
       var locale = $.pivotUtilities.locales[x.locale];
       locale.renderers = $.extend({}, locale.renderers,
