@@ -14,8 +14,16 @@ PivotTable.js is a Javascript Pivot Table library with drag'n'drop functionality
 
 The rpivotTable package depends on  [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package so you need to install both packages. You can do this using the **devtools** package as follows:
 
+For the original versions:
+
 ```R
 devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
+```
+
+For this version:
+
+```R
+devtools::install_github(c("ramnathv/htmlwidgets", "fraupflaume/rpivotTable"))
 ```
 
 #### Usage
