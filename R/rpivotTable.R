@@ -85,6 +85,21 @@
 #' rendererName = "Table Barchart"
 #' )
 #'
+#' # An example with C3 chart options to hide the legend
+#' # adapted from example by @dtownley 
+#' # https://stackoverflow.com/questions/53492220/rpivottable-hiding-or-removing-the-line-chart-legend
+#'
+#' df1 <- data.frame(where = LETTERS[1:3], what = c(3.6, 5.6, 1.1))
+#'
+#' rpivotTable(
+#' df1,
+#' aggregatorName = "Sum",
+#' vals = "Count",
+#' cols = "where",
+#' rows = "what",
+#' menulimit = 1200,
+#' rendererName = "Line Chart",
+#' rendererOptions = list(c3 = list(legend = list(show = FALSE))))
 #'
 #'
 #'
