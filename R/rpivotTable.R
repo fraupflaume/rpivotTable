@@ -147,7 +147,6 @@ rpivotTable <- function(
     params <- Map( function(p){ 
       if(typeof(p) != "list"){  # don't nest a nest!
         if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
-          message(typeof(p))
           p = list(p)
           }
       }
