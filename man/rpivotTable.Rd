@@ -88,17 +88,17 @@ htmlwidget.
  # A more complete example:
 
  rpivotTable(
- Titanic,
- rows = "Survived",
- cols = c("Class","Sex"),
- aggregatorName = "Sum as Fraction of Columns",
- vals = "Freq",
- rendererName = "Table Barchart"
+  Titanic,
+  rows = "Survived",
+  cols = c("Class","Sex"),
+  aggregatorName = "Sum as Fraction of Columns",
+  vals = "Freq",
+  rendererName = "Table Barchart"
  )
 
-# An example with inclusions and exclusions filters:
+ # An example with inclusions and exclusions filters:
 
-rpivotTable(
+ rpivotTable(
   Titanic,
   rows = "Survived",
   cols = c("Class","Sex"),
@@ -107,15 +107,15 @@ rpivotTable(
   exclusions= list( Class = list( "Crew")),
   vals = "Freq",
   rendererName = "Table Barchart"
-)
+ )
 
-# An example with C3 chart options to hide the legend
-# adapted from example by @dtownley 
-# https://stackoverflow.com/questions/53492220/rpivottable-hiding-or-removing-the-line-chart-legend
+ # An example with C3 chart options to hide the legend
+ # adapted from example by @dtownley 
+ # https://stackoverflow.com/questions/53492220/rpivottable-hiding-or-removing-the-line-chart-legend
 
-df1 <- data.frame(where = LETTERS[1:3], what = c(3.6, 5.6, 1.1))
+ df1 <- data.frame(where = LETTERS[1:3], what = c(3.6, 5.6, 1.1))
 
-rpivotTable(
+ rpivotTable(
   df1,
   aggregatorName = "Sum",
   vals = "Count",
