@@ -19,10 +19,6 @@ HTMLWidgets.widget({
       if (typeof x.params.onRefresh != "undefined") {
         x.params.onRefresh = x.params.onRefresh[0];
       }
-      
-      if(typeof x.params != 'undefined'){ //added in hopes of defeating the inappropriate nest
-        x.params = x.params[0];
-      }
 
       var locale = $.pivotUtilities.locales[x.locale];
       locale.renderers = $.extend({}, locale.renderers,
