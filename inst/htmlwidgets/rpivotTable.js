@@ -14,10 +14,10 @@ HTMLWidgets.widget({
             x.params.sorters = eval("("+x.params.sorters[0]+")")
           }
       }
-
-      if (typeof x.params.onRefresh != "undefined") {
-        x.params.onRefresh = x.params.onRefresh[0];
-      }
+      // I believe this is why it works when chunks execute but it's wrong in HTML
+      //if (typeof x.params.onRefresh != "undefined") {
+      //  x.params.onRefresh = x.params.onRefresh[0];
+      //}
 
       var locale = $.pivotUtilities.locales[x.locale];
       locale.renderers = $.extend({}, locale.renderers,
