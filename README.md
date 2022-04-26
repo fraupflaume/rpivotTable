@@ -4,11 +4,11 @@ This version of rpivotTable builds on the work of the original designers. If you
 
 >`tbl$x$params$rendererOptions <- tbl$x$params$rendererOptions[[0]]` # <- no longer needed to make `rendererOptions` work
 
-<b>You do not need to do this with this package.</b>
+From the original package:
 
-The rpivotTable package is an R [htmlwidget](http://htmlwidgets.org)  visualization library built around the Javascript [pivottable](http://nicolas.kruchten.com/pivottable/examples/)  library.
+The rpivotTable package is an R [htmlwidget](http://htmlwidgets.org) visualization library built around the Javascript [pivottable](http://nicolas.kruchten.com/pivottable/examples/) library.
 
-PivotTable.js is a Javascript Pivot Table library with drag'n'drop functionality built on top of jQuery/jQueryUI and  written in CoffeeScript  (then compiled to JavaScript) by Nicolas Kruchten at Datacratic. It is available under an MIT license
+PivotTable.js is a Javascript Pivot Table library with drag'n'drop functionality built on top of jQuery/jQueryUI and  written in CoffeeScript  (then compiled to JavaScript) by Nicolas Kruchten at Datacratic. It is available under an MIT license/.
 
 #### Installation
 
