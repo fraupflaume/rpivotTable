@@ -20,10 +20,10 @@ For the original versions:
 devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
 ```
 
-For this version:
+:vomiting_face: For this version of `rpivotTable`:
 
 ```R
-devtools::install_github(c("ramnathv/htmlwidgets", "fraupflaume/rpivotTable"))
+devtools::install_github("fraupflaume/rpivotTable")
 ```
 
 #### Usage
