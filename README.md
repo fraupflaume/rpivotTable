@@ -1,8 +1,8 @@
 ### rpivotTable:  pivottable for R
 
-This version of rpivotTable builds on the work of the original designers. If you use this version your filter pop-ups will render in the correct spot. Additionally, when using `rendererOptions`. you may have had to execute code like this:
+This version of rpivotTable builds on the work of the original designers. If you use this version your filter pop-ups will render in the correct spot. Additionally, when using `rendererOptions`. You may have had to execute code like this, but you do <b>not</b> need this with this version:
 
->`tbl$x$params$rendererOptions <- tbl$x$params$rendererOptions[[0]]`
+>`tbl$x$params$rendererOptions <- tbl$x$params$rendererOptions[[0]]` # <- no longer needed to make `rendererOptions` work
 
 <b>You do not need to do this with this package.</b>
 
