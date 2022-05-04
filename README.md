@@ -1,8 +1,26 @@
-### rpivotTable:  pivottable for R
+## rpivotTable:  pivottable for R
 
-This version of rpivotTable builds on the work of the original designers. If you use this version your filter pop-ups will render in the correct spot. Additionally, when using `rendererOptions`. You may have had to execute code like this, but you do <b>not</b> need this with this version:
+### Earlier changes
 
->`tbl$x$params$rendererOptions <- tbl$x$params$rendererOptions[[0]]` # <- no longer needed to make `rendererOptions` work
+* Filter pop-ups offset: The filter pop-ups will render in the correctly regardless of pivotable positioning. 
+* Additional code needed when using `rendererOptions`: The issue has been corrected. <b>No additional code</b> is necessary. When using this parameter and the cran package you would need to fix the widget as shown in the code chunk.
+
+```R
+tbl$x$params$rendererOptions <- tbl$x$params$rendererOptions[[0]] # <- this fix is NOT needed with this repo
+```
+
+### Changes of May 2022
+
+* Exporting to TSV: The boolean option `tsv` is now available in `rpivotTable()`. You can read more about this option on the [pivottable.js Wiki page](https://github.com/nicolaskruchten/pivottable/wiki/Optional-Extra-Renderers#exporting-to-tsv-demo).
+* DS chart options (the treemap is the only D3 chart): Setting the height and width of the treemap is now possible. The method in which you specify the settings for D3 was designed to mirror that of the C3 renderings. The following code is an example that will limit the size of all charts in the table.
+
+```R
+rpivotTable(mtcars, rows = "am", cols = "cyl", width = "90%", height = "40%",
+            rendererOptions = list(
+              c3 = list(size = list(width = "600",height = "500")),
+              d3 = list(size = list(width = "500", height = "500")) 
+            )) # important to note --- cannot use dynamic sizing here
+```
 
 From the original package:
 
@@ -14,16 +32,18 @@ PivotTable.js is a Javascript Pivot Table library with drag'n'drop functionality
 
 The rpivotTable package depends on  [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package so you need to install both packages. You can do this using the **devtools** package as follows:
 
-For the original versions:
-
-```R
-devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
-```
 
 :vomiting_face: For this version of `rpivotTable`:
 
 ```R
 devtools::install_github("fraupflaume/rpivotTable")
+```
+
+
+For the original versions:
+
+```R
+devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
 ```
 
 #### Usage

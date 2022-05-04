@@ -18,7 +18,7 @@ dependencies:
 - name: d3
   version: 3.5.5
   src: htmlwidgets/lib/d3
-  script: d3.v3.min.js
+  script: d3.js
 - name: pivottable
   version: 2.19.0
   src: htmlwidgets/lib/pivottable

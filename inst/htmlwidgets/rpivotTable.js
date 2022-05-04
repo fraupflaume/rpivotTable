@@ -34,17 +34,19 @@ HTMLWidgets.widget({
         x.params.dataClass = $.pivotUtilities.SubtotalPivotData;
       }
 
-      if(x.tsv) {
-        if(x.params.hasOwnProperty('renderers')) { // if subtotal also true
-          x.params.renderers = $.extend(x.params.renderers, $.pivotUtilities.export_renderers);
-        } else {
-          x.params.renderers = $.extend(
-            $.pivotUtilities.export_renderers,
-            $.pivotUtilities.d3_renderers, // why are these called only if other options are called?
-            $.pivotUtilities.c3_renderers  // hmpf...
-          );
-        }
-      }
+      if(x.tsv) { // put tsv first in function so other renderers have priority on the duplicates
+        x.params.renderers = $.extend($.pivotUtilities.export_renderers, x.params.renderers);
+      };
+//        if(x.params.hasOwnProperty('renderers')) { // if subtotal also true
+//          x.params.renderers = $.extend(x.params.renderers, $.pivotUtilities.export_renderers);
+//        } else {
+//          x.params.renderers = $.extend(
+//            $.pivotUtilities.export_renderers,
+//            $.pivotUtilities.d3_renderers, // why are these called only if other options are called?
+//            $.pivotUtilities.c3_renderers  // hmpf...
+//          );
+//        }
+//      }
       $('#'+el.id).pivotUI(x.data, x.params, true, x.locale);
     }
 });
