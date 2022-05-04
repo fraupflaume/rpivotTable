@@ -45,6 +45,11 @@ dependencies:
   src: htmlwidgets/lib/subtotal
   stylesheet: subtotal.min.css
   script: subtotal.min.js
+- name: tsv
+  version: 2017
+  src: htmlwidgets/lib/tsv
+  stylesheet:
+  script: export_renderers.min.js
 - name: polyfill
   version: 0.1
   src: htmlwidgets/lib/polyfill

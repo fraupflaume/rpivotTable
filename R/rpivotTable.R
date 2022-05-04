@@ -36,6 +36,7 @@
 #'            \item{zh}
 #'         }
 #' @param subtotals Logical this optional parameter allows use of the pivottable \href{https://github.com/nagarajanchinnasamy/pivottable-subtotal-renderer}{subtotal plugin}. Using this parameter will set all renderer names to the english locale.
+#' @param tsv Logical this optional parameter allows the user to add a rendering option that can be copied as text so the user can copy the data in a plain table format. There are no options available for this renderer.
 #' @param width width parameter
 #' @param height height parameter
 #' @param elementId String valid CSS selector id for the rpivotTable container.
@@ -119,6 +120,7 @@ rpivotTable <- function(
     inclusions = NULL,
     locale = "en",
     subtotals = FALSE,
+    tsv = FALSE,              # additional option
     ...,
     width = 800,
     height = 600,
@@ -141,11 +143,10 @@ rpivotTable <- function(
       sorter = sorter,
       ...
     )
-
- #   auto_box vectors of length 1
+    
     # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
     params <- Map( function(p){ 
-      if(typeof(p) != "list"){  # don't nest a nest!
+      if(typeof(p) != "list"){  
         if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
           p = list(p)
           }
@@ -169,7 +170,8 @@ rpivotTable <- function(
       data = data,
       params = params,
       locale = locale,
-      subtotals = subtotals
+      subtotals = subtotals, 
+      tsv = tsv             # new additional option
     )
 
     htmlwidgets::createWidget(

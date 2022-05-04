@@ -6,8 +6,8 @@
 \usage{
 rpivotTable(data, rows = NULL, cols = NULL, aggregatorName = NULL,
   vals = NULL, rendererName = NULL, sorter = NULL, exclusions = NULL,
-  inclusions = NULL, locale = "en", subtotals = FALSE, ..., width = 800,
-  height = 600, elementId = NULL)
+  inclusions = NULL, locale = "en", subtotals = FALSE, tsv = FALSE, ...,
+  width = 800, height = 600, elementId = NULL)
 }
 \arguments{
 \item{data}{data.frame or data.table (R>=1.9.6 for safety) with data to use in the pivot table}
@@ -53,6 +53,8 @@ Please note that this only pre-selects the visible filter(s) on the pivot table:
 }}
 
 \item{subtotals}{Logical this optional parameter allows use of the pivottable \href{https://github.com/nagarajanchinnasamy/pivottable-subtotal-renderer}{subtotal plugin}. Using this parameter will set all renderer names to the english locale.}
+
+\item{tsv}{Logical this optional parameter allows the user to add a rendering option that can be copied as text so the user can copy the data in a plain table format. There are no options available for this renderer.}
 
 \item{...}{list other \href{https://github.com/nicolaskruchten/pivottable/wiki/Parameters}{parameters} that
 can be passed to \code{pivotUI}. See Nicolas's Wiki for more details.
