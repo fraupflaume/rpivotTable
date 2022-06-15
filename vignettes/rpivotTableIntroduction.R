@@ -1,43 +1,62 @@
 ## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
-## ---- fig.show='hold'---------------------------------------------------------
-# devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
+## ----ideas, fig.show='hold'---------------------------------------------------
+# devtools::install_github(c("ramnathv/htmlwidgets",
+#                            "smartinsightsfromdata/rpivotTable"))
 
-## ---- fig.show='hold'---------------------------------------------------------
+# for latest updates use
+# devtools::install_github("fraupflaume/rpivotTable")
+
+
+## ----noted, fig.show='hold'---------------------------------------------------
 # install.packages('htmlwidgets', 'rpivotTable')
 
-## ---- fig.show='hold'---------------------------------------------------------
-library(rpivotTable)  # No need to explicitly load htmlwidgets: this is done automatically
+## ----setMeUp, fig.show='hold'-------------------------------------------------
+library(rpivotTable)  # No need to explicitly load htmlwidgets; it's done for you
+library(dplyr)        # for one of the examples below with the use of pipes
 
-## ---- fig.show='hold'---------------------------------------------------------
+## ----showMe, fig.show='hold'--------------------------------------------------
 data(mtcars)
-rpivotTable(mtcars,rows="gear", cols=c("cyl","carb"),width="100%", height="400px")
+rpivotTable(mtcars, rows = "gear",
+            cols = c("cyl", "carb"), 
+            width = "100%", height = "400px")
 
-## -----------------------------------------------------------------------------
-library(rpivotTable)
+## ----moreIdeas, results="hold"------------------------------------------------
+
 data(HairEyeColor)
-rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", width="100%", height="400px")
+rpivotTable(data = HairEyeColor, 
+            rows = "Hair",cols = "Eye", vals = "Freq", 
+            aggregatorName = "Sum", rendererName = "Table", 
+            width = "100%", height = "400px")
 
-## -----------------------------------------------------------------------------
-library(rpivotTable)
-data(HairEyeColor)
-rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", sorters = "
-function(attr) {
-var sortAs = $.pivotUtilities.sortAs;
-if (attr == \"Hair\") { return sortAs([\"Red\", \"Brown\", \"Blond\", \"Black\"]); }
-}", width="100%", height="400px")
+## ----evenMore, results="hold"-------------------------------------------------
 
-## ---- fig.show='hold'---------------------------------------------------------
-data(mtcars)
-rpivotTable(mtcars,rows="gear", cols=c("cyl","carb"),subtotals=TRUE, width="100%", height="400px")
+rpivotTable(data = HairEyeColor, 
+            rows = "Hair", cols = "Eye", vals = "Freq", 
+            aggregatorName = "Sum", rendererName = "Table", 
+            width = "100%", height = "400px",
+            sorters = "function(attr) {
+            var sortAs = $.pivotUtilities.sortAs;
+            if(attr == 'Hair'){ return sortAs(['Red', 'Brown', 'Blond', 'Black']);}
+            }")
 
-## ---- fig.show='hold'---------------------------------------------------------
-# suppressMessages(
-  library(dplyr)
-  # )
+
+## ----subIt, fig.show='hold'---------------------------------------------------
+rpivotTable(mtcars, 
+            rows="gear", cols=c("cyl", "carb"), 
+            subtotals = TRUE, 
+            width = "100%", height = "400px")
+
+## ----pipeIt, fig.show='hold'--------------------------------------------------
+
 iris %>%
-tbl_df %>%
-filter( Sepal.Width > 3 & Sepal.Length > 5 ) %>%
-rpivotTable(rows="Sepal.Width",  rendererName="Treemap")
+  as_tibble() %>%
+  filter( Sepal.Width > 3 & Sepal.Length > 5 ) %>%
+  rpivotTable(rows = "Sepal.Width",  rendererName = "Treemap",
+              rendererOptions = list(
+                d3 = list(size = list(
+                  width = "400", height = "400") # can't use % here
+                )))
+
 

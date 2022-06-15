@@ -1,6 +1,6 @@
 ---
 title: "rpivotTable"
-author: "Enzo Martoglio"
+author: "Originally Enzo Martoglio; latest updates by fraupflaume"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,6 +8,12 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+<style>
+table.pvtUI {
+  margin: 0;
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -19,19 +25,24 @@ The rpivotTable package is an R [htmlwidget](http://htmlwidgets.org)  built arou
 
 PivotTable.js is a Javascript Pivot Table visualization library with drag'n'drop functionality built on top of jQuery / jQueryUI and  written in CoffeeScript (then compiled to JavaScript) by Nicolas Kruchten at Datacratic. It is available under a MIT license
 
-Many thanks to everyone that contributes bugs and prs, and of course thanks to Nicolas Kruchten for PivotTable.js.
+Many thanks to everyone that contributes bugs and prs (what's prs?), and of course thanks to Nicolas Kruchten for PivotTable.js.
 
 #### Installation
 
 The rpivotTable package depends on  [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package, so you need to install both packages. You can do this using the **devtools** package as follows:
 
-```{r, fig.show='hold'}
-# devtools::install_github(c("ramnathv/htmlwidgets", "smartinsightsfromdata/rpivotTable"))
+```{r ideas, fig.show='hold'}
+# devtools::install_github(c("ramnathv/htmlwidgets",
+#                            "smartinsightsfromdata/rpivotTable"))
+
+# for latest updates use
+# devtools::install_github("fraupflaume/rpivotTable")
+
 ```
 
 Or directly from CRAN:
 
-```{r, fig.show='hold'}
+```{r noted, fig.show='hold'}
 # install.packages('htmlwidgets', 'rpivotTable')
 ```
 
@@ -39,17 +50,20 @@ Or directly from CRAN:
 
 Call the package with
 
-```{r, fig.show='hold'}
-library(rpivotTable)  # No need to explicitly load htmlwidgets: this is done automatically
+```{r setMeUp, fig.show='hold'}
+library(rpivotTable)  # No need to explicitly load htmlwidgets; it's done for you
+library(dplyr)        # for one of the examples below with the use of pipes
 ```
 
 Just plug in your `data.frame`, `table` or `data.table` to `rpivotTable()`.
 
 It is as simple as this:
 
-```{r, fig.show='hold'}
+```{r showMe, fig.show='hold'}
 data(mtcars)
-rpivotTable(mtcars,rows="gear", cols=c("cyl","carb"),width="100%", height="400px")
+rpivotTable(mtcars, rows = "gear",
+            cols = c("cyl", "carb"), 
+            width = "100%", height = "400px")
 ```
 The pivot table should appear in your RStudio Viewer or your browser of choice.
 
@@ -66,10 +80,13 @@ For additional technical information please refer to the examples and explanatio
 
 For example, to display a table with frequency of colour combinations of eyes and hair, you can specify:
 
-```{r}
-library(rpivotTable)
+```{r moreIdeas, results="hold"}
+
 data(HairEyeColor)
-rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", width="100%", height="400px")
+rpivotTable(data = HairEyeColor, 
+            rows = "Hair",cols = "Eye", vals = "Freq", 
+            aggregatorName = "Sum", rendererName = "Table", 
+            width = "100%", height = "400px")
 ```
 
 
@@ -77,35 +94,43 @@ This will display the resulting table. Switching the `aggregatorName` to `Sum as
 
 To display the `Hair` values in reverse order:
 
-```{r}
-library(rpivotTable)
-data(HairEyeColor)
-rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", sorters = "
-function(attr) {
-var sortAs = $.pivotUtilities.sortAs;
-if (attr == \"Hair\") { return sortAs([\"Red\", \"Brown\", \"Blond\", \"Black\"]); }
-}", width="100%", height="400px")
+```{r evenMore, results="hold"}
+
+rpivotTable(data = HairEyeColor, 
+            rows = "Hair", cols = "Eye", vals = "Freq", 
+            aggregatorName = "Sum", rendererName = "Table", 
+            width = "100%", height = "400px",
+            sorters = "function(attr) {
+            var sortAs = $.pivotUtilities.sortAs;
+            if(attr == 'Hair'){ return sortAs(['Red', 'Brown', 'Blond', 'Black']);}
+            }")
+
 ```
 
 This function could be useful for example to sort time divisions like months of the year or days of the week in their proper, non alphabetical order (thanks to palatinuse for its implementation).
 
 You can also use the very visual new subtotals:
 
-```{r, fig.show='hold'}
-data(mtcars)
-rpivotTable(mtcars,rows="gear", cols=c("cyl","carb"),subtotals=TRUE, width="100%", height="400px")
+```{r subIt, fig.show='hold'}
+rpivotTable(mtcars, 
+            rows="gear", cols=c("cyl", "carb"), 
+            subtotals = TRUE, 
+            width = "100%", height = "400px")
 ```
 
 Or if you want to include it as part of your `dplyr` / `magrittr` pipeline, you can do that also.
 
 
-```{r, fig.show='hold'}
-# suppressMessages(
-  library(dplyr)
-  # )
+```{r pipeIt, fig.show='hold'}
+
 iris %>%
-tbl_df %>%
-filter( Sepal.Width > 3 & Sepal.Length > 5 ) %>%
-rpivotTable(rows="Sepal.Width",  rendererName="Treemap")
+  as_tibble() %>%
+  filter( Sepal.Width > 3 & Sepal.Length > 5 ) %>%
+  rpivotTable(rows = "Sepal.Width",  rendererName = "Treemap",
+              rendererOptions = list(
+                d3 = list(size = list(
+                  width = "400", height = "400") # can't use % here
+                )))
+
 ```
 

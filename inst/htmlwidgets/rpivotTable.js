@@ -11,7 +11,7 @@ HTMLWidgets.widget({
 
       if (typeof x.params.sorters != "undefined") {
         if (typeof x.params.sorters[0] == "string") { // why? this seems odd
-            x.params.sorters = eval("("+x.params.sorters[0]+")")
+            x.params.sorters = eval("("+x.params.sorters[0]+")");
           }
       }
       
@@ -34,8 +34,9 @@ HTMLWidgets.widget({
         x.params.dataClass = $.pivotUtilities.SubtotalPivotData;
       }
 
-      if(x.tsv) { // put tsv first in function so other renderers have priority on the duplicates
-        x.params.renderers = $.extend($.pivotUtilities.export_renderers, x.params.renderers);
+      if(x.tsv) { // put tsv first so other renderers have priority 
+        x.params.renderers = $.extend($.pivotUtilities.export_renderers, 
+                                      x.params.renderers);
       }
       
       $('#'+el.id).pivotUI(x.data, x.params, true, x.locale);
