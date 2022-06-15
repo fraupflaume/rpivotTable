@@ -130,58 +130,58 @@ rpivotTable <- function(
   if( length(intersect(class(data),c("data.frame", "data.table", "table","structable", "ftable" ))) == 0 ) {
     stop( "data should be a data.frame, data.table, or table", call.=F)
   }
-
+  
   #convert table to data.frame
   if( length(intersect(c("table","structable", "ftable"), class(data))) > 0 ) data <- as.data.frame( data )
-
-    params <- list(
-      rows = rows,
-      cols = cols,
-      aggregatorName = aggregatorName,
-      vals = vals,
-      rendererName = rendererName,
-      sorter = sorter,
-      ...
-    )
-    
-    # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
-    params <- Map( function(p){ 
-      if(typeof(p) != "list"){  
-        if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
-          p = list(p)
-          }
+  
+  params <- list(
+    rows = rows,
+    cols = cols,
+    aggregatorName = aggregatorName,
+    vals = vals,
+    rendererName = rendererName,
+    sorter = sorter,
+    ...
+  )
+  
+  # added input from @mnist https://stackoverflow.com/questions/61622346/only-table-in-rpivottable
+  params <- Map( function(p){ 
+    if(typeof(p) != "list"){  
+      if(length(p) == 1 && class(p[[1]]) != "JS_EVAL"){
+        p = list(p)
       }
-      return(p)
     }
-      , params
-    )
-    # exclusions & inclusions need to be "excluded" from auto_boxing
-    par <- list(
-           exclusions = exclusions,
-           inclusions = inclusions
-         )
-
-    params <- c(params, par)
-
-    # remove NULL parameters
-    params <- Filter(Negate(is.null), params)
-
-    x <- list(
-      data = data,
-      params = params,
-      locale = locale,
-      subtotals = subtotals, 
-      tsv = tsv             # new additional option
-    )
-
-    htmlwidgets::createWidget(
-      name = 'rpivotTable',
-      x,
-      width = width,
-      height = height,
-      elementId = elementId,
-      package = 'rpivotTable'
-    )
+    return(p)
+  }
+  , params
+  )
+  # exclusions & inclusions need to be "excluded" from auto_boxing
+  par <- list(
+    exclusions = exclusions,
+    inclusions = inclusions
+  )
+  
+  params <- c(params, par)
+  
+  # remove NULL parameters
+  params <- Filter(Negate(is.null), params)
+  
+  x <- list(
+    data = data,
+    params = params,
+    locale = locale,
+    subtotals = subtotals, 
+    tsv = tsv             # new additional option
+  )
+  
+  htmlwidgets::createWidget(
+    name = 'rpivotTable',
+    x,
+    width = width,
+    height = height,
+    elementId = elementId,
+    package = 'rpivotTable'
+  )
 }
 
 #' Widget output function for use in Shiny
@@ -199,7 +199,7 @@ rpivotTable <- function(
 #'
 #' @export
 rpivotTableOutput <- function(outputId, width = '100%', height = '500px'){
-    shinyWidgetOutput(outputId, 'rpivotTable', width, height, package = 'rpivotTable')
+  shinyWidgetOutput(outputId, 'rpivotTable', width, height, package = 'rpivotTable')
 }
 
 #' Widget render function for use in Shiny
@@ -222,8 +222,8 @@ rpivotTableOutput <- function(outputId, width = '100%', height = '500px'){
 #'
 #' @export
 renderRpivotTable <- function(expr, env = parent.frame(), quoted = FALSE) {
-    if (!quoted) { expr <- substitute(expr) } # force quoted
-    shinyRenderWidget(expr, rpivotTableOutput, env, quoted = TRUE)
+  if (!quoted) { expr <- substitute(expr) } # force quoted
+  shinyRenderWidget(expr, rpivotTableOutput, env, quoted = TRUE)
 }
 
 
