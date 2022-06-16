@@ -36,7 +36,7 @@
 #'            \item{tr}
 #'            \item{zh}
 #'         }
-#' @param subtotals Logical this optional parameter allows use of the pivottable \href{https://github.com/nagarajanchinnasamy/pivottable-subtotal-renderer}{subtotal plugin}. Using this parameter will set all renderer names to the English locale.
+#' @param subtotals Logical this optional parameter allows use of the pivottable \href{https://github.com/nagarajanchinnasamy/pivottable-subtotal-renderer}{subtotal plugin}. Using this parameter will NOT set all renderer names to the English locale. (This has changed. It will now render with the assigned locale.)
 #' @param tsv Logical this optional parameter allows the user to add a rendering option that can be copied as text so the user can copy the data in a plain table format. There are no options available for this renderer.
 #' @param width width parameter
 #' @param height height parameter
