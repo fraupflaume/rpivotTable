@@ -26,6 +26,7 @@
 #'            \item{de}
 #'            \item{es}
 #'            \item{fr}
+#'            \item{gr} For Greek, only the number formatting changes (by request)
 #'            \item{it}
 #'            \item{nl}
 #'            \item{pl}

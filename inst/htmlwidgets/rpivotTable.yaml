@@ -32,6 +32,7 @@ dependencies:
     - pivot.de.min.js
     - pivot.es.min.js
     - pivot.fr.min.js
+    - pivot.gr.min.js
     - pivot.it.min.js
     - pivot.nl.min.js
     - pivot.pl.min.js

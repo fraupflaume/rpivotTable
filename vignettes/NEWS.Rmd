@@ -16,11 +16,14 @@ knitr::opts_chunk$set(echo = TRUE)
 #### News
 
 Version 0.4
-* `tsv` is now an output option
+
+* `tsv` is an output option, using the locale number formatting
 * you can use `subtotals = T` and set a `locale` for number formatting
-* no corrections needed when setting options for C3 and D3 charts
-* D3 charts now accept size constraints
+* no corrections needed when setting the renderer options for C3 and D3 charts
+* D3 charts accept size constraints
 * `onRefresh` does not require Shiny
+* added Greek locale as `"gr"` *Note*: the Greek language isn't used for the renderers or aggregators, by request
+
 
 Version 0.3
 
