@@ -28,17 +28,21 @@ HTMLWidgets.widget({
       if(x.subtotals) {
         x.params.renderers = $.extend(
           $.pivotUtilities.subtotal_renderers,
-          $.pivotUtilities.d3_renderers,
-          $.pivotUtilities.c3_renderers
+          $.pivotUtilities.d3_renderers, $.pivotUtilities.c3_renderers
         );
         x.params.dataClass = $.pivotUtilities.SubtotalPivotData;
       }
 
-      if(x.tsv) { // put tsv first so other renderers have priority 
-        x.params.renderers = $.extend($.pivotUtilities.export_renderers, 
-                                      x.params.renderers);
+      if(x.tsv && x.subtotals) { // put tsv first in function so other renderers have priority on the duplicates
+        x.params.renderers = $.extend(
+          $.pivotUtilities.export_renderers, x.params.renderers
+        );
+      } else if (x.tsv && !x.subtotals) {
+        x.params.renderers = $.extend(
+          $.pivotUtilities.export_renderers, $.pivotUtilities.renderers, 
+          $.pivotUtilities.d3_renderers, $.pivotUtilities.c3_renderers
+        );
       }
-      
       $('#'+el.id).pivotUI(x.data, x.params, true, x.locale);
     }
 });
