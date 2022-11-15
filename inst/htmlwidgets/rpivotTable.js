@@ -27,7 +27,8 @@ HTMLWidgets.widget({
       // if subtotals then override renderers to add subtotals
       if(x.subtotals) {
         x.params.renderers = $.extend(
-          $.pivotUtilities.subtotal_renderers,
+          $.pivotUtilities.subtotal_renderers, 
+          $.pivotUtilities.renderers,
           $.pivotUtilities.d3_renderers, $.pivotUtilities.c3_renderers
         );
         x.params.dataClass = $.pivotUtilities.SubtotalPivotData;
